@@ -5,10 +5,9 @@
         <div class="subheading mb-3 skills-heading">{{ .grouping }}</div>
             <ul>
             {{ range .skills }}
-                {{ if isset . "name" }}
-                    {{ $devicon := cond (in $.Site.Data.devicons (lower .icon)) (lower .icon) (cond (in $.Site.Data.devicons (lower .name)) (lower .name) "terminal_badge") }}
+              {{ if and (isset . "name") (isset . "icon") }}
                     <li class="list-inline-item">
-                      <i class="devicons devicons-{{ $devicon }}"></i>
+                      <i class="px-1 devicon-{{ .icon }}"></i>
                       {{if isset . "link"}}
                           <a href="{{.link}}">{{ .name }}</a>
                       {{ else }}
